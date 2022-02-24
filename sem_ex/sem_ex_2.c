@@ -154,16 +154,25 @@ int main()
     // printf("Area: %.2f\n", area);
 
     // 13
-    float w, h;
-    scanf("%f %f", &w, &h);
-    srand(time(NULL));
-    int c = ((rand() % 1) + 1) * w;
-    float area_obj = 0.84;
-    float t_dest = 2 * area_obj;
-    float area_room = w * h;
-    float area_free = area_room - t_dest - c - area_obj;
+    // float w, h;
+    // scanf("%f %f", &w, &h);
+    // srand(time(NULL));
+    // int c = ((rand() % 1) + 1) * w;
+    // float area_obj = 0.84;
+    // float t_dest = 2 * area_obj;
+    // float area_room = w * h;
+    // float area_free = area_room - t_dest - c - area_obj;
 
-    float worckplaces = area_free / area_obj;
+    // float worckplaces = area_free / area_obj;
 
-    printf("%.0f\n", worckplaces);
+    // printf("%.0f\n", worckplaces);
+
+    // // 14 bonus
+    // float prPerVeg, prPerFr;
+    // scanf("%f %f", &prPerVeg, &prPerFr);
+
+    // float vegPerKilo, frPerKilo;
+    // scanf("%f %f", &vegPerKilo, &frPerKilo);
+
+    // printf("Total: %.2f", (vegPerKilo * vegPerKilo + prPerFr * frPerKilo) * 0.54);
 }
