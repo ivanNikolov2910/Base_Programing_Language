@@ -3,6 +3,10 @@
 
 #include <stdio.h>
 
+// func declaration
+void swap(int *a, int *b);
+void changeif(int *num);
+
 void zad_0()
 {
     int a = 10;
@@ -45,6 +49,49 @@ void zad_2()
     printf("p of i = %x\n", p_i);
     printf("p of d = %x\n", p_d);
     printf("p of c = %x\n\n", p_c);
+}
+
+// zad 3 - swap 2 vars
+void zad_3()
+{
+    int a = 5, b = 10;
+    swap(&a, &b);
+
+    printf("swapped: a = %d, b = %d\n", a, b);
+}
+
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// zad 4 - void func(int a) -> if a < 1000 => *10; == 1000 => +10; > 1000 => /10
+
+void zad_4()
+{
+    int num;
+    scanf("%d", &num);
+    printf("%d\n", num);
+    changeif(&num);
+    printf("%d\n", num);
+}
+
+void changeif(int *num)
+{
+    if (*num < 1000)
+    {
+        *num *= 10;
+    }
+    if (*num > 1000)
+    {
+        *num /= 10;
+    }
+    if (*num == 1000)
+    {
+        *num += 10;
+    }
 }
 
 #endif
