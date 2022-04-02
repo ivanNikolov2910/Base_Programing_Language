@@ -171,4 +171,86 @@ void zad_just_for_fun()
 }
 
 // dynamically allocate int array[n][m] sum for each column, print max sum
+void zad_hw2()
+{
+    int n, m;
+    printf("Rows: ");
+    scanf("%d", &n);
+    printf("Cols: ");
+    scanf("%d", &m);
+
+    int *arr = (int *)malloc((n * m) * sizeof(int));
+    for (int i = 0; i < n * m; i++)
+    {
+        arr[i] = i + 1;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            printf("%d ", arr[i * m + j]);
+        }
+        printf("\n");
+    }
+
+    printf("\n");
+    printf("\n");
+
+    // new array
+    int new_n, new_m;
+    printf("New rows: ");
+    scanf("%d", &new_n);
+    printf("New cols: ");
+    scanf("%d", &new_m);
+
+    arr = (int *)realloc(arr, (new_n * new_m) * sizeof(int));
+
+    for (int i = 0; i < new_n; i++)
+    {
+        for (int j = 0; j < new_m; j++)
+        {
+            arr[i * m + j] = i * m + j + 1;
+        }
+    }
+
+    for (int i = 0; i < new_n; i++)
+    {
+        for (int j = 0; j < new_m; j++)
+        {
+            printf("%d ", arr[i * m + j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+    int sum_arr[new_m], sum = 0;
+    for (int i = 0; i < new_m; i++)
+    {
+        for (int j = 0; j < new_n; j++)
+        {
+            sum += arr[j * m + i]; // sum column
+        }
+        sum_arr[i] = sum;
+        sum = 0;
+    }
+    // sums by column
+    printf("Sums of each column: \n");
+    for (int i = 0; i < new_m; i++)
+    {
+        printf("%d ", sum_arr[i]);
+    }
+    printf("\n");
+
+    // find max sum
+    int max = sum_arr[0];
+    for (int i = 1; i < new_m; i++)
+    {
+        if (max < sum_arr[i])
+        {
+            max = sum_arr[i];
+        }
+    }
+    printf("Max sum: %d\n", max);
+}
 #endif

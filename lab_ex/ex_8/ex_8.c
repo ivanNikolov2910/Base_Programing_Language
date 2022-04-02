@@ -2,5 +2,5 @@
 
 int main()
 {
-    zad_just_for_fun();
+    zad_hw2();
 }
