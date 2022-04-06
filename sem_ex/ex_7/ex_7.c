@@ -2,5 +2,5 @@
 
 int main()
 {
-    zad_3();
+    zad_5();
 }

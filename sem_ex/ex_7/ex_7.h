@@ -10,6 +10,11 @@ void print_array(int n, int m, int array[n][m]);
 int check_row(int n, int m, int array[n][m]);
 int check_col(int n, int m, int array[n][m]);
 void add(int *arr, int *size, int num);
+void init_dynamic_array(int array[], int n);
+int *delete_x(int array[], int *, int);
+int smallest(int array[], int, int);
+void sort(int array[], int n);
+void swap(int *, int *);
 
 void zad_1()
 {
@@ -140,7 +145,13 @@ void zad_5()
     int n;
     printf("n = ");
     scanf("%d", &n);
-    int *array = (int *)malloc(n * sizeof(int));
+    int *array = (int *)calloc(n, sizeof(int));
+    init_dynamic_array(array, n);
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
     while (1)
     {
         int cmd = 0;
@@ -167,16 +178,24 @@ void zad_5()
             int x;
             printf("Delete x = ");
             scanf("%d", &x);
-            int count_x = 0;
+
+            array = delete_x(array, &n, x);
+        }
+        else if (cmd == 3)
+        {
+            int x;
+            printf("X-th element to print = ");
+            scanf("%d", &x);
+            int el = smallest(array, n, x);
+            printf("%d\n", el);
+        }
+        else
+        {
             for (int i = 0; i < n; i++)
             {
-                if (array[i] == x)
-                {
-                    count_x++;
-                }
+                printf("%d ", array[i]);
             }
-
-            // array = (int *)realloc(array, (n-count_x) * sizeof(int));
+            printf("\n");
         }
     }
 }
@@ -245,11 +264,78 @@ int check_col(int n, int m, int array[n][m])
     return 0;
 }
 
+void init_dynamic_array(int array[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        array[i] = i + 1;
+    }
+}
+
 void add(int *arr, int *size, int num)
 {
     // int size_val = *size;
     arr = (int *)realloc(arr, (*size) * sizeof(int));
     arr[*size] = num;
     ++(*size);
+}
+
+int *delete_x(int array[], int *n, int x)
+{
+    int count_x = 0;
+    for (int i = 0; i < *n; i++)
+    {
+        if (array[i] == x)
+        {
+            count_x++;
+        }
+    }
+
+    int *res = (int *)realloc(array, (*n - count_x) * sizeof(int));
+    int j = 0; // loop counter for each element result element USEFULL!!
+    for (int i = 0; i < *n; i++)
+    {
+        if (array[i] == x)
+        {
+            continue;
+        }
+        else
+        {
+            res[j] = array[i];
+            ++j;
+        }
+    }
+    *n = *n - count_x;
+    return res;
+}
+
+int smallest(int array[], int n, int x)
+{
+    sort(array, n);
+    return array[x - 1];
+}
+
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void sort(int array[], int n)
+{
+    int min_idx;
+    for (int i = 0; i < n - 1; i++)
+    {
+        min_idx = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (array[j] < array[min_idx])
+            {
+                min_idx = j;
+            }
+        }
+        swap(&array[min_idx], &array[i]);
+    }
 }
 #endif
