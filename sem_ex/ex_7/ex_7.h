@@ -262,9 +262,9 @@ void print_array(int n, int m, int array[n][m])
 int check_row(int n, int m, int array[n][m])
 {
     int flag = 0;
-    for (int i = 0; i < n - 1; i)
+    for (int i = 0; i < n - 1; i++)
     {
-        for (int j = 0; j < m - 1; j)
+        for (int j = 0; j < m - 1; j++)
         {
             if (array[i][j] < array[i + 1][j + 1])
             {
@@ -281,9 +281,9 @@ int check_row(int n, int m, int array[n][m])
 int check_col(int n, int m, int array[n][m])
 {
     int flag = 0;
-    for (int i = 0; i < n - 1; i)
+    for (int i = 0; i < n - 1; i++)
     {
-        for (int j = 0; j < m - 1; j)
+        for (int j = 0; j < m - 1; j++)
         {
             if (array[j][i] < array[j + 1][i + 1])
             {
