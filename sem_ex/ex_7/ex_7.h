@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <assert.h>
 
 void init_array(int n, int m, int array[n][m]);
 void print_array(int n, int m, int array[n][m]);
@@ -15,6 +16,7 @@ int *delete_x(int array[], int *, int);
 int smallest(int array[], int, int);
 void sort(int array[], int n);
 void swap(int *, int *);
+int *unique_frs(int n);
 
 void zad_1()
 {
@@ -200,6 +202,38 @@ void zad_5()
     }
 }
 
+// students = [1;100 000], friendships = [1;1 000 000] -- f*cking one to many ralation
+void zad_4()
+{
+    srand(time(NULL));
+
+    int n = 8;
+    // printf("students = ");
+    // scanf("%d", &n);
+    int *students = (int *)malloc(n * sizeof(int));
+    init_dynamic_array(students, n);
+    int **friendships = (int **)malloc(n * sizeof(int));
+
+    int fr_cnt = rand() % n + 1;
+    friendships[0] = (int *)malloc(fr_cnt * sizeof(int));
+    friendships[0] = unique_frs(fr_cnt);
+
+    for (int i = 1; i < n; i++)
+    {
+        fr_cnt = rand() % n + 1;
+        // TODO
+    }
+}
+
+// void del()
+// {
+//     int *mas = unique_frs(8);
+//     for (int i = 0; i < 8; i++)
+//     {
+//         printf("%d ", mas[i]);
+//     }
+// }
+
 void init_array(int n, int m, int array[n][m])
 {
     srand(time(NULL));
@@ -337,5 +371,35 @@ void sort(int array[], int n)
         }
         swap(&array[min_idx], &array[i]);
     }
+}
+
+int *unique_frs(int n)
+{
+    srand(time(NULL));
+
+    int *vektor = (int *)malloc(n * sizeof(int));
+    int random;
+    int uniqueflag;
+    int i, j;
+
+    for (i = 0; i < n; i++)
+    {
+        do
+        {
+            /* Assume things are unique... we'll reset this flag if not. */
+            uniqueflag = 1;
+            random = rand() % n + 1;
+            /* This loop checks for uniqueness */
+            for (j = 0; j < i && uniqueflag == 1; j++)
+            {
+                if (vektor[j] == random)
+                {
+                    uniqueflag = 0;
+                }
+            }
+        } while (uniqueflag != 1);
+        vektor[i] = random;
+    }
+    return vektor;
 }
 #endif
