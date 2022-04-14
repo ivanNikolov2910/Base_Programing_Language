@@ -126,8 +126,9 @@ void zad_6()
     char word[] = "concatenation";
     char guess[] = "_____________";
     int cnt = 0;
-    while (cnt >= 15)
+    while (cnt <= 15)
     {
+        cnt++;
         char c;
         scanf("%c", &c);
         for (int i = 0; i < strlen(guess); i++)
@@ -138,7 +139,7 @@ void zad_6()
             }
         }
         printf("%s\n", guess);
-        cnt++;
+
         int flag = 0;
         for (int i = 0; i < strlen(guess); i++)
         {
