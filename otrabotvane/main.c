@@ -86,17 +86,17 @@ typedef struct Person
      float volume;
  }Box;
 
- int main()
+ /*int main()
  {
-     Box boxes[5];
-     for (int i = 0; i < 5; i++)
-     {
-         scanf("%f", &boxes[i].width);
-         scanf("%f", &boxes[i].length);
-         scanf("%f", &boxes[i].height);
-         boxes[i].volume = boxes[i].width*boxes[i].length*boxes[i].height;
-     }
-     float min_vol = boxes[0].volume, max_vol = boxes[0].volume;
+    Box boxes[5];
+    for (int i = 0; i < 5; i++)
+    {
+        scanf("%f", &boxes[i].width);
+        scanf("%f", &boxes[i].length);
+        scanf("%f", &boxes[i].height);
+        boxes[i].volume = boxes[i].width*boxes[i].length*boxes[i].height;
+    }
+    float min_vol = boxes[0].volume, max_vol = boxes[0].volume;
 
     for (int i = 0; i < 5; i++)
     {
@@ -111,6 +111,46 @@ typedef struct Person
     }
 
     printf("Max volume: %.2f\tMin volume: %.2f", max_vol, min_vol);
- }
+ }*/
 
 
+ //zad_2 book program, for each book -> title, author, year, price. fill with func, print all after 2005 func, search by author from scanf()
+
+typedef struct Book
+{
+    char title[50];
+    char author[20];
+    int year;
+    float price;
+}Book;
+
+void initBooks(Book books[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        fgets(books[i].title, sizeof(books[i].title), stdin);
+        fgets(books[i].author, sizeof(books[i].author), stdin);
+        scanf("%d", &books[i].year);
+        scanf("%f", &books[i].price);
+    }
+}
+
+void printBooks(Book books[], int size, int year)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (books[i].year >= year)
+        {
+            printf("%s - %s\n%d\n%.2f lev", books[i].title, books[i].author, books[i].year, books[i].price);
+        }
+    }
+}
+
+int main()
+{
+    int size = 3;
+    Book books[size];
+
+    initBooks(books, size);
+    printBooks(books, size, 2005);
+}
