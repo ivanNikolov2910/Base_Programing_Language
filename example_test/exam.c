@@ -52,10 +52,37 @@ int main(int argc, char **argv)
         char fi_name[16];
         char s_name[16];
         char f_name[16];
+        char *ptr = strtok(names, " ");
+        strcpy(fi_name, ptr);
+        ptr = strtok(NULL, " ");
+        strcpy(s_name, ptr);
+        ptr = strtok(NULL, " ");
+        strcpy(f_name, ptr);
+        strcpy(s[cnt].fi_name, fi_name);
+        strcpy(s[cnt].s_name, s_name);
+        strcpy(s[cnt].fam_name, f_name);
 
-        printf("%s\n", fi_name);
-        printf("%s\n", s_name);
-        printf("%s\n", f_name);
+        // set grades
+        // math
+        pointer = 0;
+        for (int i = 0; buf[i] != ';'; i++)
+        {
+            pointer = i + 1;
+        }
+        // printf("%c\t%d\n", buf[pointer], pointer);
+        pointer += 7;
+        // for (int i = pointer; i < strlen(buf); i++)
+        // {
+        //     printf("%c", buf[i]);
+        // }
+        int *math = (int *)calloc(10, sizeof(int)), math_cnt = 0;
+        for (int i = pointer; buf[i] != 'B'; i++)
+        {
+            printf("%c", buf[i]);
+        }
+
+        printf("\n");
+
         cnt++;
     }
 }
