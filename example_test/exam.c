@@ -254,42 +254,59 @@ int main(int argc, char **argv)
 
     // write to bin file:
     FILE *out = fopen("students_out.bin", "wb");
-    char out_buf[255];
+    // char out_buf[255];
+    // for (int i = 0; i < st_count; i++)
+    // {
+    //     char num[6];
+    //     itoa(s[i].class_num, num, 10);
+    //     strcat(out_buf, num);
+    //     strcat(out_buf, ": ");
+    //     strcat(out_buf, s[i].fi_name);
+    //     strcat(out_buf, " ");
+    //     strcat(out_buf, s[i].s_name);
+    //     strcat(out_buf, " ");
+    //     strcat(out_buf, s[i].fam_name);
+    //     strcat(out_buf, "; Mat: ");
+    //     char *m_gr = (char *)malloc(10 * sizeof(char));
+    //     for (int j = 0; j < sizeof(s[i].math); j++)
+    //     {
+    //         m_gr[j] = s[i].math[j] + '0';
+    //     }
+    //     strcat(out_buf, m_gr);
+    //     char *b_gr = (char *)malloc(10 * sizeof(char));
+    //     for (int j = 0; j < sizeof(s[i].bulg); j++)
+    //     {
+    //         b_gr[j] = s[i].bulg[j] + '0';
+    //     }
+    //     strcat(out_buf, " BG: ");
+    //     strcat(out_buf, b_gr);
+    //     char *p_gr = (char *)malloc(10 * sizeof(char));
+    //     for (int j = 0; j < sizeof(s[i].progr); j++)
+    //     {
+    //         p_gr[j] = s[i].progr[j] + '0';
+    //     }
+    //     strcat(out_buf, " IT: ");
+    //     strcat(out_buf, p_gr);
+    //     strcat(out_buf, "\n");
+    // }
+    // fwrite(out_buf, 255, 1, out);
     for (int i = 0; i < st_count; i++)
     {
-        char num[6];
-        itoa(s[i].class_num, num, 10);
-        strcat(out_buf, num);
-        strcat(out_buf, ": ");
-        strcat(out_buf, s[i].fi_name);
-        strcat(out_buf, " ");
-        strcat(out_buf, s[i].s_name);
-        strcat(out_buf, " ");
-        strcat(out_buf, s[i].fam_name);
-        strcat(out_buf, "; Mat: ");
-        char *m_gr = (char *)malloc(10 * sizeof(char));
+        char math[16], bulg[16], progr[16];
         for (int j = 0; j < sizeof(s[i].math); j++)
         {
-            m_gr[j] = s[i].math[j] + '0';
+            math[j] = s[i].math[j] + '0';
         }
-        strcat(out_buf, m_gr);
-        char *b_gr = (char *)malloc(10 * sizeof(char));
         for (int j = 0; j < sizeof(s[i].bulg); j++)
         {
-            b_gr[j] = s[i].bulg[j] + '0';
+            bulg[j] = s[i].bulg[j] + '0';
         }
-        strcat(out_buf, " BG: ");
-        strcat(out_buf, b_gr);
-        char *p_gr = (char *)malloc(10 * sizeof(char));
         for (int j = 0; j < sizeof(s[i].progr); j++)
         {
-            p_gr[j] = s[i].progr[j] + '0';
+            progr[j] = s[i].progr[j] + '0';
         }
-        strcat(out_buf, " IT: ");
-        strcat(out_buf, p_gr);
-        strcat(out_buf, "\n");
+        fprintf(out, "%d: %s %s %s; Mat: %s BG: %s IT: %s\n", s[i].class_num, s[i].fi_name, s[i].s_name, s[i].fam_name, math, bulg, progr);
     }
-    fwrite(out_buf, 255, 1, out);
     fclose(out);
 }
 
