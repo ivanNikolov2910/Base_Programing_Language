@@ -116,7 +116,7 @@ void zad_2()
     }
     FILE *fp = fopen("zad_2.bin", "wb");
     IF_FILE_NULL(fp);
-    fwrite(arr, sizeof(arr), 1, fp);
+    fwrite(arr, sizeof(float), 10, fp);
     fclose(fp);
     fp = fopen("zad_2.bin", "rb");
     IF_FILE_NULL(fp);
